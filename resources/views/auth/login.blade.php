@@ -1,7 +1,40 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="login-wrapper">
+            <h1 class="title">Login</h1>
+        </div>
+        <form action="{{ route('login') }}" class="login-form" method="POST">
+            @csrf
+            <input type="email" name="email" {{ $errors->has('email') ? is-invalid : '' }} placeholder="Email" value="{{ old('email') }}" required autofocus>
+            @if($errors->has('email'))
+                <span class="invalid-feedback" role="alert">
+                    {{ $errors->first('email') }}
+                </span>
+            @endif
+                
+            <input type="password" name="password" {{ $errors->has('password') ? is-invalid : '' }} placeholder="password" value="{{ old('password') }}" required autofocus>
+            @if($errors->has('password'))
+                <span class="invalid-feedback" role="alert">
+                    {{ $errors->first('password') }}
+                </span>
+            @endif
+            <button type="submit">Login</button>
+        </form>
+    </div>
 
-@section('content')
-<div class="container">
+</body>
+</html>
+{{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -69,5 +102,4 @@
             </div>
         </div>
     </div>
-</div>
-@endsection
+</div> --}}
