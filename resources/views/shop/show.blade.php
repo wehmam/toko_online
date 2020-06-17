@@ -8,22 +8,22 @@
 
 @section('content')
 <div class="container">
-        <h2 class="title">Komputer</h2>
+        <h2 class="title">{{ $product->name }}</h2>
         <hr>
     <div class="row">
         <div class="wrapper">
             <div class="col-lg-4">
-                <img src="{{ asset('toko.jpg') }}" alt="Gambar" height="200" width="200">
+                <img src="{{ asset($product->image) }}" alt="Gambar" height="200" width="200">
             </div>
         </div>
         <div class="col-lg-4 desc">
             <h4 id="description">Deskripsi</h4>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit pariatur dolore odit dolor nisi est similique non minus deleniti et aliquid sequi facere, consectetur voluptates, sunt accusamus velit, ex quod!</p>
+            <p>{{ $product->desc }}</p>
         </div>
         <div class="col-lg-4">
             <div class="kartu">
                 <p>Harga</p>
-                <h2>4294204204</h2>
+                <h2>Rp. {{ number_format($product->price,2,",",".") }}</h2>
                 <form action="{{ url('/cart/store') }}" method="POST">
                     @csrf
                     <input type="hidden" name="product_id" id="">

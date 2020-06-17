@@ -11,25 +11,26 @@
     
     <div class="container">
         <div class="login-wrapper">
-            <h1 class="title">Login</h1>
+                <h1 class="title">Login</h1>
+            
+            <form action="{{ route('login') }}" class="login-form" method="POST">
+                @csrf
+                <input type="email" name="email" {{ $errors->has('email') ? is-invalid : '' }} placeholder="Email" value="{{ old('email') }}" required autofocus>
+                @if($errors->has('email'))
+                    <span class="invalid-feedback" role="alert">
+                        {{ $errors->first('email') }}
+                    </span>
+                @endif
+                    
+                <input type="password" name="password" {{ $errors->has('password') ? is-invalid : '' }} placeholder="password" value="{{ old('password') }}" required autofocus>
+                @if($errors->has('password'))
+                    <span class="invalid-feedback" role="alert">
+                        {{ $errors->first('password') }}
+                    </span>
+                @endif
+                <button type="submit">Login</button>
+            </form>
         </div>
-        <form action="{{ route('login') }}" class="login-form" method="POST">
-            @csrf
-            <input type="email" name="email" {{ $errors->has('email') ? is-invalid : '' }} placeholder="Email" value="{{ old('email') }}" required autofocus>
-            @if($errors->has('email'))
-                <span class="invalid-feedback" role="alert">
-                    {{ $errors->first('email') }}
-                </span>
-            @endif
-                
-            <input type="password" name="password" {{ $errors->has('password') ? is-invalid : '' }} placeholder="password" value="{{ old('password') }}" required autofocus>
-            @if($errors->has('password'))
-                <span class="invalid-feedback" role="alert">
-                    {{ $errors->first('password') }}
-                </span>
-            @endif
-            <button type="submit">Login</button>
-        </form>
     </div>
 
 </body>

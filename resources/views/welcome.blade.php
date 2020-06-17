@@ -83,7 +83,7 @@
 				@endforeach
 			</div>
 		</div>
-		<a href="" class="more">View More Products ></a>
+		<a href="{{ url('/shop') }}" class="more">View More Products ></a>
 	</div>
 
 	<footer class="footer-distributed">
