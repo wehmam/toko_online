@@ -30,3 +30,5 @@ Route::get('/shop','ShopController@index')->name('shop');
 Route::get('/cart','CartController@index')->name('cart');
 Route::get('/shop/{id}','ShopController@show')->name('show');
 Route::get('shop/category/{id}','ShopController@category')->name('kategori');
+Route::post('/cart/store','CartController@store')->name('store');
+Route::patch('/cart/{id}','CartController@update')->name('update');

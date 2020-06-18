@@ -26,7 +26,7 @@
                 <h2>Rp. {{ number_format($product->price,2,",",".") }}</h2>
                 <form action="{{ url('/cart/store') }}" method="POST">
                     @csrf
-                    <input type="hidden" name="product_id" id="">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}" id="">
                     <input type="submit" class="btn btn-primary" value="Masukkan Ke cart">
                 </form>
             </div>
