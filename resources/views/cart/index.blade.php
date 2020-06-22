@@ -17,8 +17,11 @@
         // menset nilai awal ke nol karna belum memilih barang
         $total = 0;
     @endphp
-    <p class="text-center">Cart Masih Kosong</p>
-    <h3>Barang yang sudah dipilih</h3>
+
+    @if($cart->count() == 0)
+        <p class="text-center">Cart Masih Kosong</p>
+    @endif
+    <h3>{{ $cart->count() }} Barang yang sudah dipilih </h3>
     @foreach($cart as $carts)
         <div class="cart">
             <div class="row">
@@ -35,7 +38,7 @@
                                     <option value="{{ $i }}" {{ $carts->qty == $i ? 'selected' : '' }}>{{ $i }}</option>
                                 @endfor
                             </select>
-                            <p class="total-item">Rp. 2000.000</p>
+                            <p class="total-item">Rp. {{ number_format($carts->product->price * $carts->qty) }}</p>
                         </div>
                     </div>
                     <hr class="mt-2 mb-2">
@@ -59,16 +62,19 @@
                 </div>
             </div>
         </div>
+        
+        @php
+            $total += ($carts->product->price * $carts->qty)
+        @endphp
     @endforeach
     <div class="total2">
         <h4 class="total-price">
-            Total Harga : Rp. 2014242424
+            Total Harga : Rp. {{ number_format($total) }}
         </h4>
     </div>
 </div>
-<form action="" method="POST" style="margin-left:400px">
+<form action="{{ route('checkout.store') }}" method="POST" style="margin-left:400px">
     @csrf
-    {{-- @method('patch') --}}
     <button type="submit" class="btn btn-primary">Checkout</button>
 </form>
 @endsection
